@@ -3,7 +3,7 @@ import java.util.Random;
 public class Dice {
     private int sides;
     private int value;
-    static Random rng = new Random();
+    private static Random rng = new Random();
 
     public Dice(int sides) {
         this.sides = sides;
@@ -24,6 +24,4 @@ public class Dice {
     public void roll() {
         this.setValue(rng.nextInt(this.sides) + 1);
     }
-
-
 }

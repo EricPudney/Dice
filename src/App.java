@@ -33,6 +33,7 @@ public class App {
                 totalValue = totalValue += die.getValue();
             }
             int guess = Integer.parseInt(c.readLine("%s, what is your guess? \n", player.name));
+            System.out.printf("The actual value was %d!\n", totalValue);
             if (guess == totalValue) {
                 player.increaseScore();
             }
