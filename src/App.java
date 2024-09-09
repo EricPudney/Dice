@@ -2,7 +2,6 @@ import java.io.Console;
 import java.util.ArrayList;
 
 
-
 public class App {
 
     static Console c = System.console();
@@ -41,13 +40,16 @@ public class App {
     }
 
     private static ArrayList<Player> getWinners(ArrayList<Player> players) {
-        int maxScore = 0;
+        int maxScore = 1;
         ArrayList<Player> returnList = new ArrayList<>();
         for (Player player : players) {
             if (player.points > maxScore) {
                 returnList.clear();
                 returnList.add(player);
                 maxScore = player.points;
+            }
+            else if (player.points == maxScore) {
+                returnList.add(player);
             }
         }
         return returnList;
@@ -61,6 +63,18 @@ public class App {
             turns -= 1;
         }
         ArrayList<Player> winner = getWinners(players);
-        System.out.printf("The winner is %s with %d points!", winner.get(0).name, winner.get(0).points);
+        if (winner.size() > 1) {
+            int noPlayers = winner.size();
+            System.out.printf("It's a draw! %d players each got %d points:", noPlayers, winner.get(0).points);
+            for (Player player : winner) {
+                System.out.println(player.name);
+            }
+        }
+        else if (winner.size() == 1) {
+            System.out.printf("The winner is %s with %d points!", winner.get(0).name, winner.get(0).points);
+        }
+        else {
+            System.out.println("Nobody guessed right!");
+        }
     }
 }
